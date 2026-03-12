@@ -49,7 +49,7 @@ public class VideoAdapterController {
     private Path outputPath;
     private FfmpegRunner ffmpeg;
     private boolean isCanceled = false;
-    private int qualityLvl = 22;
+    private int qualityLvl = 18;
 
     @FXML
     public void initialize() {
