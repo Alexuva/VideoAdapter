@@ -18,7 +18,7 @@ jobs:
           jpackage `
             --runtime-image target/app `
             --name VideoAdapter `
-            --main-class com.alexuva.app.videoadapter/com.alexuva.app.videoadapter.VideoAdapterApplication `
+            --module com.alexuva.app.videoadapter/com.alexuva.app.videoadapter.VideoAdapterApplication `
             --type exe `
             --dest output/
       - uses: actions/upload-artifact@v4
