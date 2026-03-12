@@ -21,7 +21,7 @@ jobs:
             --runtime-image target/app `
             --name VideoAdapter `
             --module com.alexuva.app.videoadapter/com.alexuva.app.videoadapter.VideoAdapterApplication `
-            --type exe `
+            --type msi `
             --dest output/ `
             --verbose
       - uses: actions/upload-artifact@v4
