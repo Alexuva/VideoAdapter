@@ -1,0 +1,51 @@
+.root {
+    -fx-font-family: "Gilroy-Regular";
+    -fx-font-size: 14;
+}
+
+.scroll-pane {
+    -fx-background-color: white;
+    -fx-border-color: #d9d9d9;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+    -fx-background-radius: 4;
+}
+
+.scroll-pane .corner {
+    -fx-background-color: transparent;
+}
+
+.video-info-container {
+    -fx-background-color: white;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}
+
+.video-info-title {
+    -fx-padding: 0 0 5 10;
+}
+
+.convert-button {
+    -fx-font-family: "Gilroy-ExtraBold";
+    -fx-padding: 10;
+    -fx-pref-width: 200;
+    -fx-height: 50;
+}
+
+.convert-button:hover {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+}
+
+.cancel-button {
+    -fx-background-color: red;
+    -fx-text-fill: white;
+    -fx-font-family: "Gilroy-ExtraBold";
+    -fx-padding: 10;
+    -fx-pref-width: 200;
+    -fx-height: 50;
+}
