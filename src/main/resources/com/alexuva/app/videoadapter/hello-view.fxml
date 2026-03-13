@@ -21,8 +21,6 @@
         <Button onAction="#selectFile" text="Examinar"/>
     </HBox>
 
-    <TextField fx:id="debugText" visible="true"></TextField>
-
     <VBox fx:id="videoInfo" maxWidth="420.0" maxHeight="250" visible="false">
         <Label styleClass="video-info-title" text="Información del vídeo">
             <font>
