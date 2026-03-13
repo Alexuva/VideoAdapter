@@ -3,6 +3,7 @@ package com.alexuva.app.videoadapter;
 import com.alexuva.app.videoadapter.ffmpeg.*;
 import com.alexuva.app.videoadapter.util.GpuDetector;
 import com.alexuva.app.videoadapter.util.GpuInfo;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -42,6 +43,8 @@ public class VideoAdapterController {
     private ComboBox<String> modeSelector;
     @FXML
     private CheckBox preserveHDR;
+    @FXML
+    private TextField debugText;
 
     private MediaStreamInfo mediaStreamInfo;
     private GpuInfo gpu;
@@ -144,7 +147,10 @@ public class VideoAdapterController {
                 Task<Void> convertTask = new Task<>() {
                     @Override
                     protected Void call() throws Exception {
-                        ffmpeg.run(progress -> updateProgress(progress, 100));
+                        ffmpeg.run(
+                                progress -> updateProgress(progress, 100),
+                                command -> Platform.runLater(() -> debugText.setText(command))
+                        );
                         return null;
                     }
                 };

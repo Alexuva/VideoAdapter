@@ -28,7 +28,7 @@ public class FfmpegRunner {
     private MediaStreamInfo mediaStreamInfo;
     private Process process;
 
-    public void run(Consumer<Double> onProgress) throws FfmpegException {
+    public void run(Consumer<Double> onProgress, Consumer<String> onCommand) throws FfmpegException {
         try {
             List<String> cmd = new ArrayList<>();
             cmd.add("ffmpeg");
@@ -42,6 +42,7 @@ public class FfmpegRunner {
             cmd.add("-nostats");
             cmd.add(outputPath.toString());
 
+            onCommand.accept(String.join(" ", cmd));
             process = new ProcessBuilder(cmd).redirectErrorStream(true).start();
 
             try (BufferedReader reader = new BufferedReader(
