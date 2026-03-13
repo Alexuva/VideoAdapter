@@ -1,11 +1,9 @@
 package com.alexuva.app.videoadapter.ffmpeg;
 
 import com.alexuva.app.videoadapter.exceptions.FfmpegException;
-import com.alexuva.app.videoadapter.exceptions.FfprobeException;
 import com.alexuva.app.videoadapter.util.GpuInfo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,7 +26,7 @@ public class FfmpegRunner {
     private MediaStreamInfo mediaStreamInfo;
     private Process process;
 
-    public void run(Consumer<Double> onProgress, Consumer<String> onCommand) throws FfmpegException {
+    public void run(Consumer<Double> onProgress) throws FfmpegException {
         try {
             List<String> cmd = new ArrayList<>();
             cmd.add("ffmpeg");
@@ -42,7 +40,6 @@ public class FfmpegRunner {
             cmd.add("-nostats");
             cmd.add(outputPath.toString());
 
-            onCommand.accept(String.join(" ", cmd));
             process = new ProcessBuilder(cmd).redirectErrorStream(true).start();
 
             try (BufferedReader reader = new BufferedReader(

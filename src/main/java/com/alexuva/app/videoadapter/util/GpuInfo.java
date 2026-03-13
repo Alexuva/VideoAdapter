@@ -24,13 +24,11 @@ public class GpuInfo {
     public List<String> videoConfig(String mode, String qualityLvl) {
         return switch (vendor) {
             case AMD -> switch (mode) {
-                case "best"     -> new ArrayList<>(List.of("-rc", "cqp", "-qp_b", qualityLvl, "-qp_i", "14", "-qp_p", "16"));
-                case "better"   -> new ArrayList<>(List.of("-rc", "cqp", "-qp_b", qualityLvl, "-qp_i", "16", "-qp_p", "18", "-profile:v", "high"));
+                case "best"     -> new ArrayList<>(List.of("-rc", "cqp", "-qp_b", qualityLvl, "-qp_i", "18", "-qp_p", "20"));
                 default         -> new ArrayList<>(List.of("-rc", "cqp", "-qp_b", qualityLvl, "-qp_i", "18", "-qp_p", "20", "-profile:v", "high"));
             };
             case NVIDIA -> switch (mode) {
-                case "best"   -> new ArrayList<>(List.of("-rc", "cqp", "-quality", "quality", "-qp_b", qualityLvl, "-qp_i", "14", "-qp_p", "16"));
-                case "better" -> new ArrayList<>(List.of("-rc", "cqp", "-quality", "quality", "-qp_b", qualityLvl, "-qp_i", "16", "-qp_p", "18", "-profile:v", "high"));
+                case "best"   -> new ArrayList<>(List.of("-rc", "cqp", "-quality", "quality", "-qp_b", qualityLvl, "-qp_i", "18", "-qp_p", "20"));
                 default       -> new ArrayList<>(List.of("-rc", "cqp", "-quality", "quality", "-qp_b", qualityLvl, "-qp_i", "18", "-qp_p", "20", "-profile:v", "high"));
             };
             case APPLE -> new ArrayList<>(List.of("-q:v", "75", "-realtime", "false"));

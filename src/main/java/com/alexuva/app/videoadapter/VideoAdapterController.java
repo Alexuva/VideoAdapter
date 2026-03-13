@@ -43,8 +43,6 @@ public class VideoAdapterController {
     private ComboBox<String> modeSelector;
     @FXML
     private CheckBox preserveHDR;
-    @FXML
-    private TextField debugText;
 
     private MediaStreamInfo mediaStreamInfo;
     private GpuInfo gpu;
@@ -147,10 +145,7 @@ public class VideoAdapterController {
                 Task<Void> convertTask = new Task<>() {
                     @Override
                     protected Void call() throws Exception {
-                        ffmpeg.run(
-                                progress -> updateProgress(progress, 100),
-                                command -> Platform.runLater(() -> debugText.setText(command))
-                        );
+                        ffmpeg.run(progress -> updateProgress(progress, 100));
                         return null;
                     }
                 };
