@@ -105,7 +105,9 @@ public class FfprobeRunner {
                                     stream.getChannels(),
                                     stream.getChannelLayout(),
                                     stream.getProfile(),
-                                    stream.getTags() != null ? stream.getTags().get("title") : "Desconocido",
+                                    stream.getTags() != null
+                                            ? stream.getTags().get("title") + " (" + stream.getTags().get("language") + ")"
+                                            : "Desconocido",
                                     stream.getTags()
                             );
                             audioStreams.add(audioInfo);
