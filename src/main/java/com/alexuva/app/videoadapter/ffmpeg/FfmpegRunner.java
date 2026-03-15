@@ -1,6 +1,8 @@
 package com.alexuva.app.videoadapter.ffmpeg;
 
 import com.alexuva.app.videoadapter.exceptions.FfmpegException;
+import com.alexuva.app.videoadapter.exceptions.FfmpegLocatorException;
+import com.alexuva.app.videoadapter.util.FfmpegLocator;
 import com.alexuva.app.videoadapter.util.GpuInfo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,7 +31,7 @@ public class FfmpegRunner {
     public void run(Consumer<Double> onProgress) throws FfmpegException {
         try {
             List<String> cmd = new ArrayList<>();
-            cmd.add("ffmpeg");
+            cmd.add(FfmpegLocator.ffmpeg().toString());
             cmd.add("-i");
             cmd.add(filePath.toString());
             buildVideoArgs(cmd);
@@ -60,6 +62,8 @@ public class FfmpegRunner {
             int exitCode = process.waitFor();
             if (exitCode != 0 && exitCode != 255) throw new FfmpegException("FFmpeg process exited with code " + exitCode);
 
+        } catch (FfmpegLocatorException e) {
+            throw new FfmpegException("Error locating FFmpeg binary: " + e.getMessage());
         } catch (IOException e) {
             throw new FfmpegException("Error executing command: " + e.getMessage());
         } catch (InterruptedException e) {
