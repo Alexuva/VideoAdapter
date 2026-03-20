@@ -16,7 +16,7 @@ public class VideoAdapterApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 700, 700);
         VideoAdapterController controller = fxmlLoader.getController();
         stage.setOnCloseRequest(event -> controller.cancel());
-        stage.setTitle("Video Adapter v0.0.5");
+        stage.setTitle("Video Adapter v0.0.8");
         stage.setScene(scene);
         stage.show();
     }
