@@ -173,7 +173,10 @@ public class VideoAdapterController {
             Task<Void> convertTask = new Task<>() {
                 @Override
                 protected Void call() throws Exception {
-                    ffmpeg.run(progress -> updateProgress(progress, 100));
+                    ffmpeg.run(progress -> {
+                        updateProgress(progress, 100);
+                        updateMessage((int) Math.floor(progress) + "%");
+                    });
                     return null;
                 }
             };
