@@ -12,6 +12,7 @@ module com.alexuva.app.videoadapter {
     requires static lombok;
     requires tools.jackson.databind;
     requires java.sql;
+    requires atlantafx.base;
 
     opens com.alexuva.app.videoadapter.ffmpeg to tools.jackson.databind;
 

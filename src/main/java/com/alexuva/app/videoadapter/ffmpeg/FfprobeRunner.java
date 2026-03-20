@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FfprobeRunner {
+    private static Process process;
     private static final List<String> BASE_CMD = new ArrayList<>(List.of(
             "ffprobe",
             "-v",
@@ -40,7 +41,7 @@ public class FfprobeRunner {
             cmd.add("json");
             cmd.add(filePath.toString());
 
-            Process process = new ProcessBuilder(cmd)
+            process = new ProcessBuilder(cmd)
                     .redirectErrorStream(true)
                     .start();
 
@@ -134,4 +135,7 @@ public class FfprobeRunner {
 
         return mediaInfo;
     };
+    public static void stop() {
+        if (process != null) process.destroy();
+    }
 }

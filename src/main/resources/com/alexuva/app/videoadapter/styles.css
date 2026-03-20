@@ -1,51 +1,55 @@
 .root {
-    -fx-font-family: "Gilroy-Regular";
-    -fx-font-size: 14;
+    -fx-font-family: "Gilroy";
+    -color-accent-1: #3d1629;
+    -color-accent-2: #5c2240;
+    -color-accent-3: #8a3363;
+    -color-accent-4: #bf4b8a;
+    -color-accent-5: #d472a8;
+    -color-accent-6: #e9a8cc;
+    -color-accent-fg: white;
+    -color-accent-emphasis: #bf4b8a;
 }
 
-.scroll-pane {
-    -fx-background-color: white;
-    -fx-border-color: #d9d9d9;
-    -fx-border-radius: 4;
-    -fx-background-radius: 4;
+
+#title {
+    -fx-font-size: 38;
+    -fx-font-weight: bold;
+    -fx-padding: 40 40 40 40;
+    -fx-border-color: red;
 }
 
-.scroll-pane > .viewport {
-    -fx-background-color: transparent;
-    -fx-background-radius: 4;
+#title .ikonli-font-icon {
+    -fx-icon-size: 42;
 }
 
-.scroll-pane .corner {
-    -fx-background-color: transparent;
+#fileRow {
+    -fx-border-color: red;
 }
 
-.video-info-container {
-    -fx-background-color: white;
-    -fx-padding: 10;
-    -fx-spacing: 10;
+#infoContainer {
+    -fx-border-color: red;
+    -fx-padding: 20;
 }
 
-.video-info-title {
-    -fx-padding: 0 0 5 10;
+#videoInfoList {
+  -fx-pref-height: 300;
+  -fx-border-radius: 4;
+  -fx-background-radius: 4;
+  -fx-border-color: -color-accent-emphasis;
+  -fx-background-color: -color-bg-subtle;
 }
 
-.convert-button {
-    -fx-font-family: "Gilroy-ExtraBold";
-    -fx-padding: 10;
-    -fx-pref-width: 200;
-    -fx-height: 50;
+#videoInfoList .list-cell {
+  -fx-padding: 10;
+  -fx-background-color: transparent;
 }
 
-.convert-button:hover {
-    -fx-background-color: #007bff;
-    -fx-text-fill: white;
+.error {
+    -fx-text-color: red;
+    -fx-icon-color: -color-danger-fg;
 }
 
-.cancel-button {
-    -fx-background-color: red;
-    -fx-text-fill: white;
-    -fx-font-family: "Gilroy-ExtraBold";
-    -fx-padding: 10;
-    -fx-pref-width: 200;
-    -fx-height: 50;
+.success {
+    -fx-text-color: green;
+    -fx-icon-color: -color-success-fg;
 }
