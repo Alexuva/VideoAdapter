@@ -3,6 +3,7 @@ module com.alexuva.app.videoadapter {
     requires javafx.fxml;
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.ikonli.material2;
     requires static lombok;
     requires tools.jackson.databind;
     requires java.sql;
