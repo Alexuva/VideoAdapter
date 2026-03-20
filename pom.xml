@@ -104,9 +104,9 @@
                             <noManPages>true</noManPages>
                             <stripDebug>true</stripDebug>
                             <noHeaderFiles>true</noHeaderFiles>
-                            <jlinkOptions>
-                                <jlinkOption>--bind-services</jlinkOption>
-                            </jlinkOptions>
+                            <options>
+                                <option>--bind-services</option>
+                            </options>
                         </configuration>
                     </execution>
                 </executions>
