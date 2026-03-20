@@ -28,7 +28,6 @@ jobs:
             --module com.alexuva.app.videoadapter/com.alexuva.app.videoadapter.VideoAdapterApplication `
             --type app-image `
             --dest output/ `
-            --win-console `
             --verbose
       - name: Zip app-image
         run: Compress-Archive -Path output/VideoAdapter -DestinationPath output/VideoAdapter-windows.zip

@@ -15,19 +15,13 @@
     -fx-font-size: 38;
     -fx-font-weight: bold;
     -fx-padding: 40 40 40 40;
-    -fx-border-color: red;
 }
 
 #title .ikonli-font-icon {
     -fx-icon-size: 42;
 }
 
-#fileRow {
-    -fx-border-color: red;
-}
-
 #infoContainer {
-    -fx-border-color: red;
     -fx-padding: 20;
 }
 
