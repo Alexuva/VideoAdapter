@@ -61,6 +61,7 @@ public class VideoAdapterController {
     private int qualityLvl = 18;
     private List<String> modeList = List.of("best", "better");
     private boolean preserveHDR = false;
+    private boolean isHDR = false;
     private String selectedMode = "best";
 
     @FXML
@@ -130,13 +131,14 @@ public class VideoAdapterController {
             analyzeTask.setOnSucceeded(event -> {
                 hideLoader();
                 mediaStreamInfo = analyzeTask.getValue();
+                isHDR = mediaStreamInfo.getVideo().isHDR();
                 showVideoInfo();
-                createButton("Convertir", "convert", mediaStreamInfo.getVideo().isHDR());
+                createButton("Convertir", "convert");
             });
 
             analyzeTask.setOnFailed(event -> {
                 hideLoader();
-                createMsg("No se pudo analizar el archivo", "error");
+                createMsg("No se pudo analizar el archivo: " + analyzeTask.getException().getMessage(), "error");
             });
 
             hideVideoInfo();
@@ -178,26 +180,21 @@ public class VideoAdapterController {
 
             convertTask.setOnSucceeded(convertEvent -> {
                 hideButton();
-                if (isCanceled) {
-                    createMsg("Conversión cancelada", "info");
-                } else {
-                    createMsg("Archivo convertido correctamente", "success");
-                }
+                hideProgressBar();
+                createMsg("Archivo convertido correctamente", "success");
+                createButton("Convertir", "convert");
             });
 
             convertTask.setOnFailed(convertEvent -> {
                 hideButton();
                 hideProgressBar();
-                createMsg("No se pudo convertir el archivo", "error");
+                createButton("Convertir", "convert");
+                createMsg("No se pudo convertir el archivo: " + convertTask.getException().getMessage(), "error");
             });
 
-            convertTask.setOnCancelled(convertEvent -> {
-               hideButton();
-               hideProgressBar();
-            });
-
+            hideMsg();
             hideButton();
-            createButton("Cancelar", "cancel", false);
+            createButton("Cancelar", "cancel");
             createProgressBar(convertTask);
             new Thread(convertTask).start();
         }
@@ -339,13 +336,13 @@ public class VideoAdapterController {
         msgContainer.getChildren().clear();
         Animations.fadeOut(msgContainer, Duration.seconds(1)).playFromStart();
     }
-    protected void createButton(String message, String type, boolean isHDR){
+    protected void createButton(String message, String type){
         if (type.equals("convert")){
             Button convertBtn = new Button(message, new FontIcon("mdal-flip_camera_android"));
             convertBtn.getStyleClass().addAll(Styles.ACCENT, Styles.TEXT_BOLDER, Styles.LARGE);
             convertBtn.setContentDisplay(ContentDisplay.LEFT);
             convertBtn.setOnAction(e -> convert());
-            buttonsContainer.getChildren().addAll(createConfigBtns(isHDR), convertBtn);
+            buttonsContainer.getChildren().addAll(createConfigBtns(), convertBtn);
             buttonsContainer.setManaged(true);
             buttonsContainer.setVisible(true);
             Animations.fadeIn(buttonsContainer, Duration.seconds(1)).playFromStart();
@@ -366,7 +363,7 @@ public class VideoAdapterController {
         buttonsContainer.getChildren().clear();
         Animations.fadeOut(buttonsContainer, Duration.seconds(1)).playFromStart();
     }
-    protected HBox createConfigBtns(boolean isHDR) {
+    protected HBox createConfigBtns() {
         ComboBox<String> modeSelector = new ComboBox<>();
         modeSelector.setItems(FXCollections.observableList(modeList));
         modeSelector.getSelectionModel().selectFirst();
@@ -396,18 +393,6 @@ public class VideoAdapterController {
 
         StackPane stackPane = new StackPane(progressBar, progressLabel);
         stackPane.setAlignment(Pos.CENTER);
-
-        task.setOnSucceeded(e -> {
-            progressBar.progressProperty().unbind();
-            progressLabel.textProperty().unbind();
-            hideProgressBar();
-        });
-
-        task.setOnFailed(e -> {
-            progressBar.progressProperty().unbind();
-            progressLabel.textProperty().unbind();
-            hideProgressBar();
-        });
 
         progressBarContainer.getChildren().add(stackPane);
         progressBarContainer.setManaged(true);
